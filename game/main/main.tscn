@@ -1,3 +1,15 @@
 [gd_scene format=3 uid="uid://c1ax4qh6vrg64"]
 
+[ext_resource type="Script" uid="uid://clt2jqhx4vo2t" path="res://game/scripts/train_sim.gd" id="1_5520f"]
+
 [node name="Main" type="Node2D" unique_id=915065749]
+
+[node name="TestWorld" type="Node2D" parent="." unique_id=1039410382]
+
+[node name="Train" type="Node2D" parent="TestWorld" unique_id=867426505]
+script = ExtResource("1_5520f")
+
+[node name="ColorRect" type="ColorRect" parent="TestWorld/Train" unique_id=66095157]
+offset_right = 80.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 0.95686275)
