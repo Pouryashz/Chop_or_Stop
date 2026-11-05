@@ -1,15 +1,59 @@
-[gd_scene format=3 uid="uid://c1ax4qh6vrg64"]
+[gd_scene format=3 uid="uid://bt2vqltivoc7f"]
 
 [ext_resource type="Script" uid="uid://clt2jqhx4vo2t" path="res://game/scripts/train_sim.gd" id="1_5520f"]
+[ext_resource type="PackedScene" uid="uid://bj5nucbda5b84" path="res://game/assets/working/Sir_raccoon.glb" id="2_tkdpa"]
+[ext_resource type="PackedScene" uid="uid://cgpqmj1jfgfra" path="res://game/assets/working/Sheriff's_office.glb" id="2_yil3p"]
+[ext_resource type="Script" uid="uid://cq3lqqs5klkov" path="res://game/scripts/train_visual.gd" id="3_8y833"]
+[ext_resource type="PackedScene" uid="uid://b86ixhtox1m41" path="res://game/assets/working/Cowgirl_main.glb" id="3_yymkh"]
+
+[sub_resource type="Curve2D" id="Curve2D_5520f"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1161, 1725, 0, 0, 0, 0, 2119, 1398, 0, 0, 0, 0, 2737, 409, 0, 0, 0, 0, 4201, 15, 0, 0, 0, 0, 5342, 874, 0, 0, 0, 0, 7111, 1667, 0, 0, 0, 0, 8185, 3323, 0, 0, 0, 0, 7536, 3869, 0, 0, 0, 0, 6023, 3202, 0, 0, 0, 0, 4792, 2670, 0, 0, 0, 0, 4380, 3605, 0, 0, 0, 0, 3507, 3623, 0, 0, 0, 0, 3560, 2616, 0, 0, 0, 0, 2978, 2258, 0, 0, 0, 0, 2589, 3247, 0, 0, 0, 0, 2983, 4268, 0, 0, 0, 0, 1876, 4371, 0, 0, 0, 0, 304, 3946, 0, 0, 0, 0, 143, 2826, 0, 0, 0, 0, 456, 2168, 0, 0, 0, 0, 1161, 1725)
+}
+point_count = 21
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7d806"]
+size = Vector2(50, 50)
 
 [node name="Main" type="Node2D" unique_id=915065749]
 
-[node name="TestWorld" type="Node2D" parent="." unique_id=1039410382]
+[node name="Logic" type="Node2D" parent="." unique_id=852387832]
 
-[node name="Train" type="Node2D" parent="TestWorld" unique_id=867426505]
+[node name="Track" type="Path2D" parent="Logic" unique_id=196435553]
+curve = SubResource("Curve2D_5520f")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Logic/Track" unique_id=985818690]
+position = Vector2(1161, 1725)
+rotation = -0.32893568
+
+[node name="TrainSim" type="Node2D" parent="Logic/Track/PathFollow2D" unique_id=742963152]
+position = Vector2(-541.518, -2007.5618)
+rotation = 0.32893568
 script = ExtResource("1_5520f")
 
-[node name="ColorRect" type="ColorRect" parent="TestWorld/Train" unique_id=66095157]
-offset_right = 80.0
-offset_bottom = 40.0
-color = Color(1, 0, 0, 0.95686275)
+[node name="Visuals" type="Node3D" parent="." unique_id=1610443525]
+
+[node name="Sir_raccoon" parent="Visuals" unique_id=146317713 instance=ExtResource("2_tkdpa")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0.5)
+
+[node name="Cowgirl_main" parent="Visuals" unique_id=789216517 instance=ExtResource("3_yymkh")]
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 0, 0, 0.6)
+
+[node name="Ground" type="MeshInstance3D" parent="Visuals" unique_id=407189159]
+mesh = SubResource("PlaneMesh_7d806")
+
+[node name="Station" type="Node3D" parent="Visuals" unique_id=171212642]
+
+[node name="Sheriff\'s_office" parent="Visuals/Station" unique_id=1672068407 instance=ExtResource("2_yil3p")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="TrainVisual" type="Node3D" parent="Visuals" unique_id=2100175599 node_paths=PackedStringArray("train_sim")]
+script = ExtResource("3_8y833")
+train_sim = NodePath("../../Logic/Track/PathFollow2D/TrainSim")
+
+[node name="CameraPivot" type="Node3D" parent="Visuals" unique_id=1873454695]
+transform = Transform3D(0.70710677, -0.40860704, 0.5770964, 0, 0.8161376, 0.5778576, -0.70710677, -0.40860704, 0.5770964, 0, 0, 0)
+
+[node name="IsometricCamera" type="Camera3D" parent="Visuals/CameraPivot" unique_id=956426625]
+transform = Transform3D(0.9923275, 0.039021865, -0.11731857, -0.07144517, 0.9554036, -0.28653055, 0.1009056, 0.29271394, 0.95086104, -0.2853178, -0.091703385, 1.2154303)
+projection = 1
