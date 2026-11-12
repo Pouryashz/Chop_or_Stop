@@ -14,6 +14,7 @@ const BLEND := 0.3 # Période de transition
 @export var turn_speed := 7.0 # Vitesse de rotation du personnage
 @export var max_run_time := 30.0 # Durée maximale de course avant la fatigue (secondes)
 @export var recovery_time := 60.0 # Temps pour récupérer toute l'endurance (secondes)
+@export var move_angle_offset := 45.0 # Rotation supplémentaire des touches en degrés
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
@@ -69,16 +70,17 @@ func _update_stamina(delta: float) -> void:
 			exhausted = false
 
 
-# Lit les touches WASD et renvoie la direction au sol, relative à la caméra
+# Lit les touches et renvoie la direction au sol, relative à la caméra
+# Touches permutées : W fait l'ancien D, S l'ancien A, A l'ancien W, D l'ancien S
 func _get_move_direction() -> Vector3:
 	var input := Vector2.ZERO
-	if Input.is_physical_key_pressed(KEY_D):
-		input.x += 1.0
-	if Input.is_physical_key_pressed(KEY_A):
-		input.x -= 1.0
-	if Input.is_physical_key_pressed(KEY_S):
-		input.y += 1.0
 	if Input.is_physical_key_pressed(KEY_W):
+		input.x += 1.0
+	if Input.is_physical_key_pressed(KEY_S):
+		input.x -= 1.0
+	if Input.is_physical_key_pressed(KEY_D):
+		input.y += 1.0
+	if Input.is_physical_key_pressed(KEY_A):
 		input.y -= 1.0
 
 	if input == Vector2.ZERO:
@@ -89,8 +91,9 @@ func _get_move_direction() -> Vector3:
 	if cam != null:
 		yaw = cam.global_rotation.y
 
-	# normalized() ramène toujours la longueur à 1 : ces valeurs ne changent pas la vitesse
-	return Vector3(input.x, 0.0, input.y).normalized().rotated(Vector3.UP, yaw)
+	# Rotation de la direction : angle de la caméra + décalage choisi (move_angle_offset)
+	var angle := yaw + deg_to_rad(move_angle_offset)
+	return Vector3(input.x, 0.0, input.y).normalized().rotated(Vector3.UP, angle)
 
 
 # Déplacement + rotation vers la direction + animation de marche ou de course
