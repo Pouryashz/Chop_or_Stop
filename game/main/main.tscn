@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dylj4fep2ilib" path="res://game/assets/Main_Girl/Cowgirl/Idle/cowgirl.tscn" id="2_yymkh"]
 [ext_resource type="Script" uid="uid://cq3lqqs5klkov" path="res://game/scripts/train_visual.gd" id="3_8y833"]
 [ext_resource type="Script" uid="uid://b4f7x71xjg8ls" path="res://game/main/camera_pivot.gd" id="6_yymkh"]
+[ext_resource type="PackedScene" uid="uid://b86ixhtox1m41" path="res://game/assets/working/Cowgirl_main.glb" id="3_yymkh"]
+[ext_resource type="PackedScene" uid="uid://hh7d5g4u31fa" path="res://game/assets/working/Locomotive.glb" id="5_yymkh"]
 
 [sub_resource type="Curve2D" id="Curve2D_5520f"]
 _data = {
@@ -54,6 +56,9 @@ mesh = SubResource("PlaneMesh_7d806")
 
 [node name="Sheriff\'s_office" parent="Visuals/Station" unique_id=1672068407 instance=ExtResource("2_yil3p")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="Locomotive" parent="Visuals/Station" unique_id=77551576 instance=ExtResource("5_yymkh")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0.17, 1)
 
 [node name="TrainVisual" type="Node3D" parent="Visuals" unique_id=2100175599 node_paths=PackedStringArray("train_sim")]
 script = ExtResource("3_8y833")
