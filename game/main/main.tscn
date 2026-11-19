@@ -4,19 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://4dhw3hvdcuny" path="res://game/assets/working/Sir_raccoon.glb" id="2_tkdpa"]
 [ext_resource type="PackedScene" uid="uid://dqi24dqkaydwc" path="res://game/assets/working/Sheriff's_office.glb" id="2_yil3p"]
 [ext_resource type="PackedScene" uid="uid://dylj4fep2ilib" path="res://game/assets/Main_Girl/Cowgirl/Idle/cowgirl.tscn" id="2_yymkh"]
-[ext_resource type="Script" uid="uid://cq3lqqs5klkov" path="res://game/scripts/train_visual.gd" id="3_8y833"]
+[ext_resource type="Script" uid="uid://bulf5ngaosa6t" path="res://game/scripts/rail_track.gd" id="3_rail"]
+[ext_resource type="PackedScene" uid="uid://c5hsy3upednxy" path="res://game/assets/working/Locomotive.glb" id="5_yymkh"]
 [ext_resource type="Script" uid="uid://b4f7x71xjg8ls" path="res://game/main/camera_pivot.gd" id="6_yymkh"]
-[ext_resource type="PackedScene" uid="uid://b86ixhtox1m41" path="res://game/assets/working/Cowgirl_main.glb" id="3_yymkh"]
-[ext_resource type="PackedScene" uid="uid://hh7d5g4u31fa" path="res://game/assets/working/Locomotive.glb" id="5_yymkh"]
-
-[sub_resource type="Curve2D" id="Curve2D_5520f"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1161, 1725, 0, 0, 0, 0, 2119, 1398, 0, 0, 0, 0, 2737, 409, 0, 0, 0, 0, 4201, 15, 0, 0, 0, 0, 5342, 874, 0, 0, 0, 0, 7111, 1667, 0, 0, 0, 0, 8185, 3323, 0, 0, 0, 0, 7536, 3869, 0, 0, 0, 0, 6023, 3202, 0, 0, 0, 0, 4792, 2670, 0, 0, 0, 0, 4380, 3605, 0, 0, 0, 0, 3507, 3623, 0, 0, 0, 0, 3560, 2616, 0, 0, 0, 0, 2978, 2258, 0, 0, 0, 0, 2589, 3247, 0, 0, 0, 0, 2983, 4268, 0, 0, 0, 0, 1876, 4371, 0, 0, 0, 0, 304, 3946, 0, 0, 0, 0, 143, 2826, 0, 0, 0, 0, 456, 2168, 0, 0, 0, 0, 1161, 1725)
-}
-point_count = 21
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7d806"]
 size = Vector2(50, 50)
+
+[sub_resource type="Curve3D" id="Curve3D_track"]
+_data = {
+"points": PackedVector3Array(0, 0, -5.52, 0, 0, 5.52, 15, 0, 0, 8.28, 0, 0, -8.28, 0, 0, 0, 0, 10, 0, 0, 5.52, 0, 0, -5.52, -15, 0, 0, -8.28, 0, 0, 8.28, 0, 0, 0, 0, -10, 0, 0, -5.52, 0, 0, 5.52, 15, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
 
 [node name="Main" type="Node2D" unique_id=915065749]
 
@@ -26,20 +26,6 @@ shadow_enabled = true
 directional_shadow_split_1 = 0.05
 directional_shadow_max_distance = 2000.0
 directional_shadow_pancake_size = 0.1
-
-[node name="Logic" type="Node2D" parent="." unique_id=852387832]
-
-[node name="Track" type="Path2D" parent="Logic" unique_id=196435553]
-curve = SubResource("Curve2D_5520f")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Logic/Track" unique_id=985818690]
-position = Vector2(1161, 1725)
-rotation = -0.32893568
-
-[node name="TrainSim" type="Node2D" parent="Logic/Track/PathFollow2D" unique_id=742963152]
-position = Vector2(-541.518, -2007.5618)
-rotation = 0.32893568
-script = ExtResource("1_5520f")
 
 [node name="Visuals" type="Node3D" parent="." unique_id=1610443525]
 
@@ -57,17 +43,26 @@ mesh = SubResource("PlaneMesh_7d806")
 [node name="Sheriff\'s_office" parent="Visuals/Station" unique_id=1672068407 instance=ExtResource("2_yil3p")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
-[node name="Locomotive" parent="Visuals/Station" unique_id=77551576 instance=ExtResource("5_yymkh")]
-transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0.17, 1)
+[node name="Track" type="Path3D" parent="Visuals" unique_id=2055345219]
+curve = SubResource("Curve3D_track")
+script = ExtResource("3_rail")
 
-[node name="TrainVisual" type="Node3D" parent="Visuals" unique_id=2100175599 node_paths=PackedStringArray("train_sim")]
-script = ExtResource("3_8y833")
-train_sim = NodePath("../../Logic/Track/PathFollow2D/TrainSim")
+[node name="TrainFollow" type="PathFollow3D" parent="Visuals/Track" unique_id=1670814803]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 15, 0, 0)
 
-[node name="CameraPivot" type="Node3D" parent="Visuals" unique_id=1873454695]
+[node name="TrainSim" type="Node" parent="Visuals/Track/TrainFollow" unique_id=1294835823]
+script = ExtResource("1_5520f")
+
+[node name="Locomotive" parent="Visuals/Track/TrainFollow" unique_id=77551576 instance=ExtResource("5_yymkh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.3, 0)
+
+[node name="CameraPivot" type="Node3D" parent="Visuals" unique_id=1873454695 node_paths=PackedStringArray("ground", "follow_target")]
 transform = Transform3D(0.7071067, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.7071067, -0.49999997, 0.49999997, 0, 0, -0.5)
 script = ExtResource("6_yymkh")
+ground = NodePath("../Ground")
+follow_target = NodePath("../Track/TrainFollow")
 
 [node name="IsometricCamera" type="Camera3D" parent="Visuals/CameraPivot" unique_id=956426625]
 transform = Transform3D(0.9923275, 0.039021865, -0.11731857, -0.07144517, 0.9554036, -0.28653055, 0.1009056, 0.29271394, 0.95086104, -0.2853178, -0.091703385, 1.2154303)
 projection = 1
+size = 12.0
