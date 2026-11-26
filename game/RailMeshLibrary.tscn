@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dljj5kyfmyx11"]
+
+[ext_resource type="ArrayMesh" uid="uid://cwq3rxpfm3vh6" path="res://game/assets/Railway/Rail_Buffer_Stop.obj" id="1_lda51"]
+[ext_resource type="ArrayMesh" uid="uid://crijt3yq7wx7n" path="res://game/assets/Railway/Rail_Straight.obj" id="2_c1v53"]
+[ext_resource type="ArrayMesh" uid="uid://dnhpvvhmw2k2f" path="res://game/assets/Railway/Rail_Curve_Right.obj" id="3_0s2m7"]
+[ext_resource type="ArrayMesh" uid="uid://bwefs646dleea" path="res://game/assets/Railway/Rail_Curve_Left.obj" id="4_ibthf"]
+
+[node name="Node3D" type="Node3D" unique_id=1029533532]
+
+[node name="Buffer" type="MeshInstance3D" parent="." unique_id=433724444]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, 0, 0, 0.31162888)
+mesh = ExtResource("1_lda51")
+
+[node name="Straight" type="MeshInstance3D" parent="." unique_id=358063308]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 0.27133685, 0, 0)
+mesh = ExtResource("2_c1v53")
+
+[node name="Right" type="MeshInstance3D" parent="." unique_id=691476161]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, -0.32254615, 0, 0)
+mesh = ExtResource("3_0s2m7")
+
+[node name="Left" type="MeshInstance3D" parent="." unique_id=1245979776]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 0.566016, 0, 0.009485841)
+mesh = ExtResource("4_ibthf")
