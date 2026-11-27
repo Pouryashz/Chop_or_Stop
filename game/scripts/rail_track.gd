@@ -1,4 +1,4 @@
-@tool
+tool
 extends Path3D
 class_name RailTrack
 

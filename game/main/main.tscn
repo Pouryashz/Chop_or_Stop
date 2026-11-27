@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c5hsy3upednxy" path="res://game/assets/working/Locomotive.glb" id="5_yymkh"]
 [ext_resource type="Script" uid="uid://b4f7x71xjg8ls" path="res://game/main/camera_pivot.gd" id="6_yymkh"]
 [ext_resource type="MeshLibrary" uid="uid://rfvy4g3yc3b1" path="res://game/assets/RrailTrack.tres" id="7_2st6t"]
+[ext_resource type="Script" uid="uid://c1gbrfqvvjxvj" path="res://game/scripts/track_painter.gd" id="9_kk62w"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7d806"]
 size = Vector2(50, 50)
@@ -31,12 +32,13 @@ directional_shadow_pancake_size = 0.1
 [node name="Visuals" type="Node3D" parent="." unique_id=1610443525]
 
 [node name="Cowgirl" parent="Visuals" unique_id=1473401453 instance=ExtResource("2_yymkh")]
-transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0, 0.602599)
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -0.83591425, 0, 0.22027314)
 
 [node name="Sir_raccoon" parent="Visuals" unique_id=146317713 instance=ExtResource("2_tkdpa")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0.5)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.82362986, 0, 0.05031848)
 
 [node name="Ground" type="MeshInstance3D" parent="Visuals" unique_id=407189159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0050632954, -0.0041181445, 0.002425462)
 mesh = SubResource("PlaneMesh_7d806")
 
 [node name="Station" type="Node3D" parent="Visuals" unique_id=171212642]
@@ -56,14 +58,14 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 15, 
 script = ExtResource("1_5520f")
 
 [node name="Locomotive" parent="Visuals/Track/TrainFollow" unique_id=77551576 instance=ExtResource("5_yymkh")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.3, 0)
+transform = Transform3D(0.44995713, 0, 0.0062104873, 0, 0.45, 0, -0.0062104873, 0, 0.44995713, 14.271965, 0.2471377, -0.5518945)
 
 [node name="GridMap" type="GridMap" parent="Visuals/Track" unique_id=137236633]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh_library = ExtResource("7_2st6t")
 cell_size = Vector3(0.25, 0.25, 0.25)
 data = {
-"cells": PackedInt32Array(65531, 7, 655364, 65535, 7, 655360, 3, 7, 655360, 7, 7, 655360, 11, 7, 655360, 65531, 10, 655364, 65535, 10, 655360, 3, 10, 655360, 7, 10, 655360, 11, 10, 655360, 15, 7, 655360, 15, 10, 655360, 19, 7, 655360)
+"cells": PackedInt32Array(23, 12, 1, 65533, 4, 655360, 65529, 4, 655360, 65525, 4, 655360, 5, 4, 655360, 65521, 7, 655360, 65525, 7, 655360, 21, 7, 655380, 1, 4, 655360, 65533, 7, 655360, 65529, 7, 655360, 65517, 11, 655360, 1, 7, 0, 65517, 7, 655364, 65521, 4, 655388, 65501, 0, 655360, 65497, 0, 655360, 65493, 0, 655364, 65501, 4, 655364, 17, 7, 655387, 65521, 11, 655360, 65525, 11, 655360, 65529, 11, 655360, 65533, 11, 655360, 65513, 11, 655364, 65531, 11, 655387, 65511, 15, 655360, 65507, 15, 655360, 65503, 15, 655360, 65499, 15, 655364, 25, 4, 655360, 29, 4, 655360, 33, 4, 655360, 25, 7, 655360, 29, 7, 655360, 33, 7, 655360, 53, 0, 655383, 38, 4, 655360, 42, 4, 655360, 46, 4, 655360, 50, 4, 655360, 57, 0, 655360, 113, 4, 655388, 61, 0, 655360, 65, 0, 655360, 69, 0, 655360, 73, 0, 655360, 77, 0, 655360, 81, 0, 655360, 85, 0, 655360, 89, 0, 655360, 93, 0, 655360, 54, 4, 655360, 58, 4, 655360, 62, 4, 655360, 66, 4, 655360, 70, 4, 655360, 74, 4, 655360, 78, 4, 655360, 82, 4, 655360, 86, 4, 655360, 90, 4, 655360, 94, 4, 655360)
 }
 
 [node name="CameraPivot" type="Node3D" parent="Visuals" unique_id=1873454695 node_paths=PackedStringArray("ground", "follow_target")]
@@ -76,3 +78,8 @@ follow_target = NodePath("../Track/TrainFollow")
 transform = Transform3D(0.9923275, 0.039021865, -0.11731857, -0.07144517, 0.9554036, -0.28653055, 0.1009056, 0.29271394, 0.95086104, -0.2853178, -0.091703385, 1.2154303)
 projection = 1
 size = 12.0
+
+[node name="TrackPainter" type="Node3D" parent="." unique_id=1479377063]
+script = ExtResource("9_kk62w")
+rail_height = null
+buffer_face = null

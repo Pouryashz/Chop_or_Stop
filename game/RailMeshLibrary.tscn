@@ -2,8 +2,18 @@
 
 [ext_resource type="ArrayMesh" uid="uid://cwq3rxpfm3vh6" path="res://game/assets/Railway/Rail_Buffer_Stop.obj" id="1_lda51"]
 [ext_resource type="ArrayMesh" uid="uid://crijt3yq7wx7n" path="res://game/assets/Railway/Rail_Straight.obj" id="2_c1v53"]
-[ext_resource type="ArrayMesh" uid="uid://dnhpvvhmw2k2f" path="res://game/assets/Railway/Rail_Curve_Right.obj" id="3_0s2m7"]
-[ext_resource type="ArrayMesh" uid="uid://bwefs646dleea" path="res://game/assets/Railway/Rail_Curve_Left.obj" id="4_ibthf"]
+[ext_resource type="ArrayMesh" uid="uid://dsmg6nr45k3k4" path="res://game/assets/Railway/Rail_Right_15_30.obj" id="3_5dtbg"]
+[ext_resource type="ArrayMesh" uid="uid://b0nrwaq8yv7qr" path="res://game/assets/Railway/Rail_Right_30_45.obj" id="4_bnw4u"]
+[ext_resource type="ArrayMesh" uid="uid://bwv2vbwtpelna" path="res://game/assets/Railway/Rail_Right_45_60.obj" id="5_cjy23"]
+[ext_resource type="ArrayMesh" uid="uid://b3ghu2mj44og" path="res://game/assets/Railway/Rail_Right_60_75.obj" id="6_6h3gf"]
+[ext_resource type="ArrayMesh" uid="uid://ugledh5so3br" path="res://game/assets/Railway/Rail_Right_75_90.obj" id="7_1cil4"]
+[ext_resource type="ArrayMesh" uid="uid://cua1xr2fda1n" path="res://game/assets/Railway/Rail_Left_15_30.obj" id="8_7rpvy"]
+[ext_resource type="ArrayMesh" uid="uid://w5s2fq7veuhe" path="res://game/assets/Railway/Rail_Left_30_45.obj" id="9_w1584"]
+[ext_resource type="ArrayMesh" uid="uid://j5lwmtdcmuau" path="res://game/assets/Railway/Rail_Left_45_60.obj" id="10_yte1k"]
+[ext_resource type="ArrayMesh" uid="uid://co8dofnle7o6m" path="res://game/assets/Railway/Rail_Left_60_75.obj" id="11_sv43r"]
+[ext_resource type="ArrayMesh" uid="uid://bxeo1eitug16w" path="res://game/assets/Railway/Rail_Left_75_90.obj" id="12_l5xsr"]
+[ext_resource type="ArrayMesh" uid="uid://b3e7gw4n03x36" path="res://game/assets/Railway/Rail_Right_90.obj" id="13_cjy23"]
+[ext_resource type="ArrayMesh" uid="uid://b4p5hs1sgk1xo" path="res://game/assets/Railway/Rail_Left_90.obj" id="14_6h3gf"]
 
 [node name="Node3D" type="Node3D" unique_id=1029533532]
 
@@ -12,13 +22,53 @@ transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-
 mesh = ExtResource("1_lda51")
 
 [node name="Straight" type="MeshInstance3D" parent="." unique_id=358063308]
-transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 0.27133685, 0, 0)
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 0.008927792, 0, 0.5330242)
 mesh = ExtResource("2_c1v53")
 
-[node name="Right" type="MeshInstance3D" parent="." unique_id=691476161]
-transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, -0.32254615, 0, 0)
-mesh = ExtResource("3_0s2m7")
+[node name="RailRight1530" type="MeshInstance3D" parent="." unique_id=1191965578]
+transform = Transform3D(0.25060326, -0.009156609, -0.43256694, -0.020916272, 0.49904713, -0.022681493, 0.43215802, 0.029463487, 0.24974261, -0.32683498, 0, -0.034402534)
+mesh = ExtResource("3_5dtbg")
 
-[node name="Left" type="MeshInstance3D" parent="." unique_id=1245979776]
-transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 0.566016, 0, 0.009485841)
-mesh = ExtResource("4_ibthf")
+[node name="RailRight3045" type="MeshInstance3D" parent="." unique_id=329164650]
+transform = Transform3D(0.12940952, 0, -0.48296288, 0, 0.5, 0, 0.48296288, 0, 0.12940952, -1.0066352, 0, 0.07957336)
+mesh = ExtResource("4_bnw4u")
+
+[node name="RailRight4560" type="MeshInstance3D" parent="." unique_id=1752005894]
+transform = Transform3D(0.12962839, -0.010155833, -0.4827974, -0.009595432, 0.4997365, -0.013088475, 0.48280886, 0.012658574, 0.12936519, -1.0884596, 0, 0.11829054)
+mesh = ExtResource("5_cjy23")
+
+[node name="RailRight6075" type="MeshInstance3D" parent="." unique_id=938611677]
+transform = Transform3D(0.12950052, -0.012581346, -0.48277462, -0.0034892692, 0.49979287, -0.01396082, 0.48292592, 0.006984928, 0.12935908, -0.4420548, 0, 0.50677603)
+mesh = ExtResource("6_6h3gf")
+
+[node name="RailRight7590" type="MeshInstance3D" parent="." unique_id=1391654538]
+transform = Transform3D(0.12940954, 0, -0.4829629, 0, 0.5, 0, 0.4829629, 0, 0.12940954, -1.0409899, 0, 0.9474762)
+mesh = ExtResource("7_1cil4")
+
+[node name="RailLeft1530" type="MeshInstance3D" parent="." unique_id=1886043580]
+transform = Transform3D(-0.12940952, 0, -0.4829629, 0, 0.5, 0, 0.4829629, 0, -0.12940952, 0.28434628, 0, -0.029859826)
+mesh = ExtResource("8_7rpvy")
+
+[node name="RailLeft3045" type="MeshInstance3D" parent="." unique_id=581688444]
+transform = Transform3D(-0.12940952, 0, -0.4829629, 0, 0.5, 0, 0.4829629, 0, -0.12940952, 0.94913375, 0, 0.062497243)
+mesh = ExtResource("9_w1584")
+
+[node name="RailLeft4560" type="MeshInstance3D" parent="." unique_id=852686095]
+transform = Transform3D(-0.12940952, 0, -0.4829629, 0, 0.5, 0, 0.4829629, 0, -0.12940952, 1.071886, 0, 0.12783822)
+mesh = ExtResource("10_yte1k")
+
+[node name="RailLeft6075" type="MeshInstance3D" parent="." unique_id=1375062969]
+transform = Transform3D(-0.12940952, 0, -0.4829629, 0, 0.5, 0, 0.4829629, 0, -0.12940952, 0.45042965, 0, 0.5579897)
+mesh = ExtResource("11_sv43r")
+
+[node name="RailLeft7590" type="MeshInstance3D" parent="." unique_id=1745779782]
+transform = Transform3D(-0.12940952, 0, -0.4829629, 0, 0.5, 0, 0.4829629, 0, -0.12940952, 1.1085622, 0, 0.98403263)
+mesh = ExtResource("12_l5xsr")
+
+[node name="RailRight90" type="MeshInstance3D" parent="." unique_id=144060303]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, -1.7747716, 4.7683716e-07, 0.010138512)
+mesh = ExtResource("13_cjy23")
+
+[node name="RailLeft90" type="MeshInstance3D" parent="." unique_id=175564795]
+transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 1.7752182, 1.1920929e-07, 0.0007780194)
+mesh = ExtResource("14_6h3gf")
