@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bxeo1eitug16w"
+path="res://.godot/imported/Rail_Left_75_90.obj-814f00ab1157a62b2142fdaf47208245.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Rail_Left_75_90.obj-814f00ab1157a62b2142fdaf47208245.mesh"]
+
+source_file="res://game/assets/Railway/Rail_Left_75_90.obj"
+dest_files=["res://.godot/imported/Rail_Left_75_90.obj-814f00ab1157a62b2142fdaf47208245.mesh", "res://.godot/imported/Rail_Left_75_90.obj-814f00ab1157a62b2142fdaf47208245.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=false
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
